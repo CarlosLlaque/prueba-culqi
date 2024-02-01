@@ -1,0 +1,7 @@
+Prueba tecnica - Backend gateway POS - Carlos Llaque
+* Compilacion de la aplicacion
+Ejecutar el comando `npm install` seguido del comando `npm run build`
+
+* Ejecucion de los tests
+Ejecutar el comando `npm run test`
+

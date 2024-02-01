@@ -1,9 +1,9 @@
 import { GenericException } from "../exceptions/genericException";
-import { CardDataResponse } from "../models/cardDataResponse";
-import { RedisClient } from "../util/redisUtil";
+import { CardDataResponse } from "../models/responses/cardDataResponse";
+import RedisClient from "../util/redisUtil";
 
 export class CardService {
-  private redisClient:RedisClient = new RedisClient();
+  constructor(private redisClient:RedisClient){}
 
   async getCardData(token:string): Promise<CardDataResponse>{
     const cardData = await this.redisClient.getValue(token);

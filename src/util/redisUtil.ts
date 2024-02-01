@@ -1,10 +1,11 @@
 import * as redis from 'redis';
+import { GenericException } from '../exceptions/genericException';
 
-export class RedisClient{
+export default class RedisClient{
   private client: redis.RedisClientType;
   constructor(){
     this.client = redis.createClient({
-      url: 'redis://localhost:6379',
+      url: `redis://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || '6379'}`,
     });
 
     this.client.on('connect', () => {
@@ -21,7 +22,10 @@ export class RedisClient{
       this.client.connect();
       await this.client.hSet(key, value);
       await this.client.expire(key, expires);
-    }finally{
+    }catch (error){
+      throw new Error('Error while setting value');
+    }
+    finally{
       this.client.quit();
     }
   }
@@ -30,7 +34,10 @@ export class RedisClient{
     try{
       this.client.connect();
       return await this.client.hGetAll(key);
-    }finally{
+    }catch{
+      throw new Error('Error while getting value');
+    }
+    finally{
       this.client.quit();
     }
   }

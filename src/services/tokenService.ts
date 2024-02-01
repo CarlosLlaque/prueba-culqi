@@ -1,11 +1,12 @@
 import { CardValidationException } from "../exceptions/cardValidationException";
-import { GenerateTokenRequest } from "../models/generateTokenRequest";
+import { GenerateTokenRequest } from "../models/requests/generateTokenRequest";
 import { JwtUtil } from "../util/jwtUtil";
-import { RedisClient } from "../util/redisUtil";
+import RedisClient from "../util/redisUtil";
 
 export class TokenService {
 
-  private redisUtil:RedisClient = new RedisClient();
+  constructor(private redisUtil: RedisClient){}
+
 
   async generateToken(tokenRequest: GenerateTokenRequest): Promise<string> {
     const jwtReq = {
@@ -96,8 +97,7 @@ export class TokenService {
 
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth() + 1;
-    console.log(currentYear);
-    console.log(currentMonth);
+    // const fiveYearsAgo = currentYear - 5;
 
     if (expirationYearNumber - currentYear > 5) throw new CardValidationException('Not a valid year: More than 5 years', 400)
 
