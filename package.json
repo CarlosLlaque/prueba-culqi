@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "nodemon --exec ts-node src/index.ts",
+    "serve:full":"docker run -d -p 6379:6379 redis && nodemon --exec ts-node src/index.ts",
     "test": "jest --verbose",
     "build": "tsc"
   },
