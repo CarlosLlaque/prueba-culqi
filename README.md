@@ -14,4 +14,5 @@ http://af6d5ef3a78034a2692d567671693cb1-1796551486.us-east-1.elb.amazonaws.com:8
 
 http://af6d5ef3a78034a2692d567671693cb1-1796551486.us-east-1.elb.amazonaws.com:8080/card/data
 
-Para poder probar los servicios puede utilizar la coleccion postman "Prueba tecnica Culqi.postma_collection.json"
+Para poder probar los servicios puede utilizar la [coleccion postman]['Prueba tecnica Culqi.postman_collection.json']
+
