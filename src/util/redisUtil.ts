@@ -20,9 +20,10 @@ export default class RedisClient{
   async setValue(key:string, value:any, expires:number){
     try{
       this.client.connect();
-      await this.client.hSet(key, value);
+      await this.client.set(key, value);
       await this.client.expire(key, expires);
     }catch (error){
+      console.log(error)
       throw new Error('Error while setting value');
     }
     finally{
@@ -33,7 +34,7 @@ export default class RedisClient{
   async getValue(key:string): Promise<any>{
     try{
       this.client.connect();
-      return await this.client.hGetAll(key);
+      return await this.client.get(key);
     }catch{
       throw new Error('Error while getting value');
     }

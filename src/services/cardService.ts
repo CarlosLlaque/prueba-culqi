@@ -1,6 +1,7 @@
 import { GenericException } from "../exceptions/genericException";
 import { CardDataResponse } from "../models/responses/cardDataResponse";
 import RedisClient from "../util/redisUtil";
+import { decryptData } from "../util/cryptoUtil";
 
 export class CardService {
   constructor(private redisClient:RedisClient){}
@@ -10,6 +11,11 @@ export class CardService {
     if (Object.keys(cardData).length === 0){
       throw new GenericException('Redis key not found', 404);
     }
-    return cardData;
+
+    const cardDataDecrypted = decryptData(cardData);
+
+    const cardDataResponse:CardDataResponse = JSON.parse(cardDataDecrypted);
+
+    return cardDataResponse;
   }
 }

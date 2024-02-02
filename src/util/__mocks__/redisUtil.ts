@@ -8,13 +8,9 @@ export default class RedisClient{
   }
 
   async getValue(key:string): Promise<any>{
-    const redisResponse:CardDataResponse = {
-      card_number: 123123123,
-      email: 'mock-email@gmail.com',
-      expiration_month: '10',
-      expiration_year: '2020'
-    }
-    return redisResponse;
+    return 'ruuH4UWc4WD7NuAQdk1Tul1wBidFo+f4KdJpHQ/enxcxKzbKJmMhb5cLH5al9Ydl8zAe3krahdA88P5FPQo6JPKWmVi8SbVnKlxn31TKsacYqiIiL4D7RYTEQoV\
+    A70uFsP79W8l5GyELMSKYhS+L73xtb+FVwT2oe25dGNDd0sn9qEjQ4sWVzxuoUD4XSwICG26u5lnZjrkXyKtDUFU0G7WmAoiZR6QYetIrUclmjBdea0Y8OTsoVa\
+    Un9+nr4xta+CnSkLlvp69UArUmD1SgSok9FcDUzJifX69JtantDfPv/OWMVSWyOWwa6jS90N5a/KjDHPwvoYuY6nl4y5pD/A=='
   }
 }
 

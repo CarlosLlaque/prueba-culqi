@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "a100c72d-7ab8-4b8e-b126-61c96eac1db2",
+		"name": "Prueba tecnica Culqi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11899303"
+	},
+	"item": [
+		{
+			"name": "Generate Token local",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonResponse = JSON.parse(responseBody);",
+							"pm.environment.set(\"token\", jsonResponse.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "pk-token",
+						"value": "pk_test_asdfsafsf",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"ad@gmail.com\",\n    \"cvv\":200,\n    \"card_number\":4280797191159981,\n    \"expiration_month\":\"02\",\n    \"expiration_year\":\"2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/token/generateToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"token",
+						"generateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card Data local",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "pk-token",
+						"value": "pk_test_adsf",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/card/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"card",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generar token aws",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonResponse = JSON.parse(responseBody);",
+							"pm.environment.set(\"token\", jsonResponse.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "pk-token",
+						"value": "pk_test_asdf",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"prueba-token@gmail.com\",\n    \"cvv\":200,\n    \"card_number\":4280797191159981,\n    \"expiration_month\":\"02\",\n    \"expiration_year\":\"2024\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://af6d5ef3a78034a2692d567671693cb1-1796551486.us-east-1.elb.amazonaws.com:8080/token/generateToken",
+					"protocol": "http",
+					"host": [
+						"af6d5ef3a78034a2692d567671693cb1-1796551486",
+						"us-east-1",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"token",
+						"generateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Card Data aws",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "pk-token",
+						"value": "pk_test_adsf",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://af6d5ef3a78034a2692d567671693cb1-1796551486.us-east-1.elb.amazonaws.com:8080/card/data",
+					"protocol": "http",
+					"host": [
+						"af6d5ef3a78034a2692d567671693cb1-1796551486",
+						"us-east-1",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "8080",
+					"path": [
+						"card",
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,6 +2,7 @@ import { CardValidationException } from "../exceptions/cardValidationException";
 import { GenerateTokenRequest } from "../models/requests/generateTokenRequest";
 import { JwtUtil } from "../util/jwtUtil";
 import RedisClient from "../util/redisUtil";
+import { encryptData } from "../util/cryptoUtil";
 
 export class TokenService {
 
@@ -22,7 +23,8 @@ export class TokenService {
       expirationMonth: tokenRequest.expiration_month
     }
 
-    await this.redisUtil.setValue(token, redisPayload, 60);
+    const redisPayLoadEncripted = encryptData(JSON.stringify(redisPayload));
+    await this.redisUtil.setValue(token, redisPayLoadEncripted, 60);
     
     return token;
   }

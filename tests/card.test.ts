@@ -11,10 +11,10 @@ describe('retrieve card data',()=>{
   test('succesfull', async()=>{
     const cardDataResponse = await cardService.getCardData('abc');
     expect(cardDataResponse).toEqual({
-      card_number: 123123123,
-      email: 'mock-email@gmail.com',
-      expiration_month: '10',
-      expiration_year: '2020'
+      cardNumber: 4557880666122274,
+      email: "ad@gmail.com",
+      expirationMonth: "02",
+      expirationYear: "2024",
     })
   })
 
